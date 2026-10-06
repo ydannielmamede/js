@@ -3,4 +3,4 @@ const numero2 =6;
 
 const soma = numero1 + numero2;
 
-console.log("Resultado final:", soma);
+console.log(`a soma entre ${numero1} e ${numero2} é igual a ${soma}`);
