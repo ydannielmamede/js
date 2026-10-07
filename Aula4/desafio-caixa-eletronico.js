@@ -18,17 +18,23 @@ while (opcao !== 4) {
     switch (opcao) {
         case 1:
             console.log(`Saldo atual: ${saldoAtual}`);
-            question("\nPressione enter para voltar")
+            question("\n2Pressione enter para voltar")
             break;
         case 2:
             valorDeposito = Number(question("Qual o valor do deposito? "))
-            saldoAtual = saldoAtual + valorDeposito
-            console.log(`Foi efetuado um deposito de ${valorDeposito}`);
-            question("\nPressione enter para voltar")
-            break
+            if (valorDeposito > 0) {
+                saldoAtual = saldoAtual + valorDeposito
+                console.log(`Foi efetuado um deposito de ${valorDeposito}`);
+                question("\nPressione enter para voltar")
+                break;
+            }else{
+                console.log("Digite valores acima de 0");
+                question("\nPressione enter para voltar")
+                break;
+            }
         case 3:
             quantidadeSaque = Number(question("qual a quantidade do valor a sacar? "))
-            if (quantidadeSaque < saldoAtual && quantidadeSaque > 0) {
+            if (quantidadeSaque <= saldoAtual && quantidadeSaque > 0) {
                 saldoAtual = saldoAtual - quantidadeSaque;
                 console.log(`Saque realizado! saldo atual ${saldoAtual}`);
                 question("\nPressione enter para voltar")
@@ -46,7 +52,7 @@ while (opcao !== 4) {
 
             break
         default:
-            console.log("Digite uma opocao valida");
+            console.log("Digite uma opcao valida");
             break;
     }
 }
