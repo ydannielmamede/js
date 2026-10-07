@@ -1,6 +1,6 @@
 const { question } = require("readline-sync");
 
-let quantidadeVendas = Number(question("Quantas vendas deseja cadastrar? "))
+const quantidadeVendas = Number(question("Quantas vendas deseja cadastrar? "))
 let valorVenda;
 let totalVendido = 0
 let maiorVenda = 0;
@@ -25,6 +25,9 @@ if (quantidadeVendas > 0) {
                 maiorVenda = valorVenda
             }
 
+            if (menorVenda === 0 || valorVenda < menorVenda) {
+                menorVenda = valorVenda
+            }
 
             if (valorVenda > 500) {
                 vendasAcima500++
