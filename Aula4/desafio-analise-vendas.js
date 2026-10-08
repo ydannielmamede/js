@@ -13,7 +13,7 @@ let vendasAbaixo100 = 0
 if (quantidadeVendas > 0) {
 
     for (let i = 1; i <= quantidadeVendas; i++) {
-        valorVenda = Number(question(`Digite o valor da venda ${i} `))
+        valorVenda = Number(question(`Digite o valor da venda ${i}: `))
 
         if (valorVenda > 0) {
 
@@ -36,7 +36,10 @@ if (quantidadeVendas > 0) {
             }
 
         } else {
-            console.log("O valor da venda deve ser maior que 0");
+            while (valorVenda <= 0) {
+                console.log("O valor da venda deve ser maior que 0");
+                valorVenda = Number(question(`Digite o valor da venda ${i}: `))
+            }
 
         }
     }
