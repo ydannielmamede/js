@@ -39,15 +39,13 @@ console.log(`Maior venda = ${maiorVenda}`);
 let vendasMenor100 = 0;
 for (let i = 0; i < vendas.length; i++) {
     if (vendas[i] < 100) {
-        vendasMenor100++
+        vendasMenor100 += vendas[i]
     }
 }
-console.log(`Quantidade de vendas menores a R$100: ${vendas100}`);
+console.log(`Valor total de vendas menores a R$100: ${vendasMenor100}`);
 
 //7. Exiba uma mensagem informando se o faturamento total foi igual ou superior a R$1.000
 
 if (faturamento > 1000) {
     console.log(`Faturamento ultrapassou R$1000 reais!!.`);
-    
-    
 }
