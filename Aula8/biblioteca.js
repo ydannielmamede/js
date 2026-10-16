@@ -23,6 +23,58 @@ function exibirLivroESituacao(titulo, situacao) {
     }
 }
 
+function emprestarLivro(titulo, situacao) {
+    console.log(`Produtos disponíveis para empréstimo:}`);
+    for (let i = 0; i < titulo.length; i++) {
+        if (situacao[i] === "disponivel") {
+            console.log(` ${i} ${titulos[i]}`);
+        }
+    }
+    let indiceLivro = Number(question("Selecione o indice o livro: "))
+    situacao[indiceLivro] = "emprestado"
+}
+function devolverLivro(titulo, situacao) {
+    console.log(`Produtos atualmente emprestados:`);
+    for (let i = 0; i < titulo.length; i++) {
+        if (situacao[i] === "emprestado") {
+            console.log(` ${i} ${titulos[i]}`);
+        }
+    }
+    let indiceLivro = Number(question("Selecione o indice o livro: "))
+    situacao[indiceLivro] = "disponivel"
+}
+
+function listarLivrosDisponiveis(titulo,situacao) {
+    console.log(`Produtos disponíveis para empréstimo:`);
+    for (let i = 0; i < titulo.length; i++) {
+        if (situacao[i] === "disponivel") {
+            console.log(`${titulos[i]}`);
+        }
+    }
+    
+}
+
+function exibirRelatorio(situacao) {
+    let quantidadeLivros = 0;
+    let quantidadeLivrosDisponiveis =0;
+    let quantidadeLivrosEmprestados = 0;
+
+    quantidadeLivros = titulos.length
+
+    for (let i = 0; i < situacoes.length; i++) {
+    if (situacao[i] === "emprestado") {
+        quantidadeLivrosEmprestados++
+    }else{
+        quantidadeLivrosDisponiveis++
+    }
+    }
+
+    console.log(`Quantidade de livros: ${quantidadeLivros}`);
+    console.log(`Quantidade de livros disponíveis: ${quantidadeLivrosDisponiveis}`);
+    console.log(`Quantidade de livros emprestados: ${quantidadeLivrosEmprestados}`);
+    
+}
+
 const codigos = [];
 const titulos = ["teste1", "teste", "teste3"];
 const autores = [];
@@ -40,7 +92,7 @@ while (opcao !== 8) {
     console.log("3 - Pesquisar livro: localizar livros pelo título ou parte dele.");
     console.log("4 - Emprestar livro: alterar a situação de um livro disponível para emprestado.");
     console.log("5 - Devolver livro: alterar a situação de um livro emprestado para disponível.");
-    console.log("6 - Listar livros disponíveis: exibit os livros que podem ser emprestados.");
+    console.log("6 - Listar livros disponíveis: exibir os livros que podem ser emprestados.");
     console.log("7 - Exibir relatório: apresentar a quantidade total de livros, disponíveis e emprestados.");
     console.log("8 - Sair: encerrar o programa.");
 
@@ -54,32 +106,38 @@ while (opcao !== 8) {
         case 2:
             exibirLivroESituacao(titulos, situacoes)
             question("Pressione Enter para continuar...")
-            break
+            break;
         case 3:
-
             let pesquisaTitulo = question("Inserir título do livro: ")
 
             for (let i = 0; i < titulos.length; i++) {
                 if (titulos.includes(pesquisaTitulo)) {
                     console.log(titulos[i]);
-                }else {
-                    console.log("Nenhuma ocorrencia encontrada.");
                 }
             }
-
             question("Pressione Enter para continuar...")
-            break
-
+            break;
+        case 4:
+            emprestarLivro(titulos, situacoes)
+            question("Pressione Enter para continuar...")
+            break;
+        case 5:
+            devolverLivro(titulos, situacoes)
+            question("Pressione Enter para continuar...")
+            break;
+        case 6:
+            listarLivrosDisponiveis(titulos,situacoes)
+            question("Pressione Enter para continuar...")
+            break;
+        case 7:
+            exibirRelatorio(situacoes)
+            question("Pressione Enter para continuar...")
+            break;
+        case 8:
+            console.log("Programa encerrado");
         default:
+            console.log("Opção indispinível, tente novamente");
             break;
     }
-
-
-
-
-
-
-
-
 
 }

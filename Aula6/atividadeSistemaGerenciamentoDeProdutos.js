@@ -26,32 +26,37 @@ do {
             console.log(`Indice: ${i}, produto: ${produtos[i]}`);
         }
         question("Pressione ENTER para continuar...")
-    }else if (opcao === 2 ) {
+    } else if (opcao === 2) {
         let adicionarProdutoFinal = question("Inserir nome do produto para adicionar ao final da lista: ")
         produtos.push(adicionarProdutoFinal);
         question("Pressione ENTER para continuar...")
-    }else if ( opcao === 3 ){
+    } else if (opcao === 3) {
         let adicionarProdutoInicio = question("Inserir nome do produto para adicionar ao inicio da lista: ")
         produtos.push(adicionarProdutoInicio);
         question("Pressione ENTER para continuar...")
-    }else if (opcao === 4) {
+    } else if (opcao === 4) {
         produtos.pop()
         console.log("O ultimo produto da lista foi removido.");
         question("Pressione ENTER para continuar...")
-    }else if (opcao === 5) {
-        let consultaPorIndice = Number(question(`Insira um indice de 0 ate ${produtos.length -1} para consultar: ` ))
-        console.log(`Indice ${consultaPorIndice} pertence ao produto: ${produtos[consultaPorIndice]}`);
-        question("Pressione ENTER para continuar...")
-    }else if (opcao === 6) {
-        let posicao = Number(question(`Insira a posicao do produto pelo indice de 0 ate ${produtos.length -1} para fazer a substituicao: `))
+    } else if (opcao === 5) {
+        let consultaPorIndice = Number(question(`Insira um indice de 0 ate ${produtos.length - 1} para consultar: `))
+        if (consultaPorIndice > 0 && consultaPorIndice < produtos.length) {
+            console.log(`Indice ${consultaPorIndice} pertence ao produto: ${produtos[consultaPorIndice]}`);
+            question("Pressione ENTER para continuar...")
+        } else {
+            console.log("Produto não encontrado tente novamente.");
+            question("Pressione ENTER para continuar...")
+        }
+    } else if (opcao === 6) {
+        let posicao = Number(question(`Insira a posicao do produto pelo indice de 0 ate ${produtos.length - 1} para fazer a substituicao: `))
         let novoNomeProduto = question("Qual o nome do novo produto? ")
-        produtos.splice(posicao,1,novoNomeProduto)
+        produtos.splice(posicao, 1, novoNomeProduto)
         question("Pressione ENTER para continuar...")
-    }else if (opcao === 7) {
-        let posicao = Number(question(`Insira a posicao do produto pelo indice de 0 ate ${produtos.length -1} para fazer a remocao: `))
-        produtos.splice(posicao,1)
+    } else if (opcao === 7) {
+        let posicao = Number(question(`Insira a posicao do produto pelo indice de 0 ate ${produtos.length - 1} para fazer a remocao: `))
+        produtos.splice(posicao, 1)
         question("Pressione ENTER para continuar...")
-    }else if (opcao === 8){
+    } else if (opcao === 8) {
         console.log("Programa encerrado");
         break
     }
