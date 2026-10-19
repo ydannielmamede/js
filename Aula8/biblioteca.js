@@ -1,8 +1,21 @@
 const { question } = require("readline-sync");
 
 function cadastrarLivro() {
-    let codigoLivro = Number(question("Inserir código do livro: "));
-    let tituloLivro = question("Inserir título do livro: ");
+    let codigoLivro = question("Inserir código do livro: ");
+
+    for (let i = 0; i < codigos.length; i++) {
+        if (codigos[i] === codigoLivro) {
+            console.log("Codigo ja existe");
+            return
+        }
+    }
+    let tituloLivro = question("Inserir título do livro: ").trim()
+
+    if (tituloLivro === "") {
+        console.log("Campo vazio, tente novamente");
+        return;
+    }
+
     let autorLivro = question("Inserir autor do livro: ");
     let categoriaLivro = question("Inserir categoria do livro: ");
     let anoPublicacaoLivro = Number(question("Inserir ano de publicação do livro: "));
@@ -23,9 +36,9 @@ function exibirLivroESituacao(titulo, situacao) {
     }
 }
 
-function emprestarLivro(titulo, situacao) {
+function emprestarLivro(codigo, situacao) {
     console.log(`Produtos disponíveis para empréstimo:}`);
-    for (let i = 0; i < titulo.length; i++) {
+    for (let i = 0; i < codigo.length; i++) {
         if (situacao[i] === "disponivel") {
             console.log(` ${i} ${titulos[i]}`);
         }
@@ -33,9 +46,9 @@ function emprestarLivro(titulo, situacao) {
     let indiceLivro = Number(question("Selecione o indice o livro: "))
     situacao[indiceLivro] = "emprestado"
 }
-function devolverLivro(titulo, situacao) {
+function devolverLivro(codigo, situacao) {
     console.log(`Produtos atualmente emprestados:`);
-    for (let i = 0; i < titulo.length; i++) {
+    for (let i = 0; i < codigo.length; i++) {
         if (situacao[i] === "emprestado") {
             console.log(` ${i} ${titulos[i]}`);
         }
@@ -44,35 +57,35 @@ function devolverLivro(titulo, situacao) {
     situacao[indiceLivro] = "disponivel"
 }
 
-function listarLivrosDisponiveis(titulo,situacao) {
+function listarLivrosDisponiveis(titulo, situacao) {
     console.log(`Produtos disponíveis para empréstimo:`);
     for (let i = 0; i < titulo.length; i++) {
         if (situacao[i] === "disponivel") {
             console.log(`${titulos[i]}`);
         }
     }
-    
+
 }
 
 function exibirRelatorio(situacao) {
     let quantidadeLivros = 0;
-    let quantidadeLivrosDisponiveis =0;
+    let quantidadeLivrosDisponiveis = 0;
     let quantidadeLivrosEmprestados = 0;
 
     quantidadeLivros = titulos.length
 
     for (let i = 0; i < situacoes.length; i++) {
-    if (situacao[i] === "emprestado") {
-        quantidadeLivrosEmprestados++
-    }else{
-        quantidadeLivrosDisponiveis++
-    }
+        if (situacao[i] === "emprestado") {
+            quantidadeLivrosEmprestados++
+        } else {
+            quantidadeLivrosDisponiveis++
+        }
     }
 
     console.log(`Quantidade de livros: ${quantidadeLivros}`);
     console.log(`Quantidade de livros disponíveis: ${quantidadeLivrosDisponiveis}`);
     console.log(`Quantidade de livros emprestados: ${quantidadeLivrosEmprestados}`);
-    
+
 }
 
 const codigos = [];
@@ -98,6 +111,16 @@ while (opcao !== 8) {
 
     opcao = Number(question("Escolher opção: "))
 
+    if (opcao <= 0 || opcao > 8) {
+        console.log("Tente apenas numeros de 1 ate 8");
+        question("Pressione Enter para continuar...")
+        continue
+    }
+    if (!Number.isInteger(opcao)) {
+        console.log("Digite apenas números");
+        question("Pressione Enter para continuar...")
+    }
+
     switch (opcao) {
         case 1:
             cadastrarLivro()
@@ -118,15 +141,15 @@ while (opcao !== 8) {
             question("Pressione Enter para continuar...")
             break;
         case 4:
-            emprestarLivro(titulos, situacoes)
+            emprestarLivro(codigos, situacoes)
             question("Pressione Enter para continuar...")
             break;
         case 5:
-            devolverLivro(titulos, situacoes)
+            devolverLivro(codigos, situacoes)
             question("Pressione Enter para continuar...")
             break;
         case 6:
-            listarLivrosDisponiveis(titulos,situacoes)
+            listarLivrosDisponiveis(titulos, situacoes)
             question("Pressione Enter para continuar...")
             break;
         case 7:
