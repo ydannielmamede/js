@@ -3,7 +3,7 @@
 // um laboratório.
 // Considere os dados iniciais:
 
-const { questionInt,question } = require("readline-sync");
+const { questionInt, question } = require("readline-sync");
 
 // Desenvolva um programa que:
 // 1. Apresente as temperaturas de todas as salas.
@@ -31,11 +31,11 @@ while (true) {
 
     console.log("1. Apresentar as temperaturas de todas as salas.");
     console.log("2. Registrar uma nova temperatura para uma sala.");
-    console.log("3. Identifique a sala com a maior temperatura.");
-    console.log("4. Calcule a temperatura média das salas.");
-    console.log("5. Conte quantas salas estão com temperatura acima de 27 °C.");
-    console.log("6. Informe se alguma sala ultrapassou 30 °C.");
-    console.log("7. Encerre quando o usuário solicitar.");
+    console.log("3. Identificar a sala com a maior temperatura.");
+    console.log("4. Calcular a temperatura média das salas.");
+    console.log("5. Contar quantas salas estão com temperatura acima de 27 °C.");
+    console.log("6. Informar se alguma sala ultrapassou 30 °C.");
+    console.log("7. Encerra programa!.");
 
     opcao = questionInt("Selecione uma opção: ")
 
@@ -45,12 +45,13 @@ while (true) {
             console.log(`${i} - ${temperaturas[i]}`);
         }
         console.log("========================");
-        
+
     } else if (opcao === 2) {
         let nomeSala = question("Nome da sala: ")
-
         let temperaturaNova = question("Nova temperatura: ")
+
         temperaturas.push(temperaturaNova)
+        salas.push(nomeSala)
 
 
     } else if (opcao === 3) {
@@ -68,6 +69,7 @@ while (true) {
         }
         let media = soma / temperaturas.length
         console.log(`Média das temperaturas: ${media}`);
+
     } else if (opcao === 5) {
         let contadorMaior27 = 0;
         for (let i = 0; i < temperaturas.length; i++) {
@@ -75,7 +77,11 @@ while (true) {
                 contadorMaior27++
             }
         }
-        console.log(`${contadorMaior27} salas estão com temperatura maior que 27!`);
+        if (contadorMaior27 === 0) {
+            console.log("Nenhuma temperatura acima de 27");
+        } else {
+            console.log(`Foi encontrado ${contadorMaior27} sala(s) com temperatura maior que 27!`);
+        }
     } else if (opcao === 6) {
         let tempMaior30 = false
         for (let i = 0; i < temperaturas.length; i++) {
@@ -85,7 +91,6 @@ while (true) {
                 break
             } else {
                 console.log("Nenhuma sala ultrapassou 30 de temperatura");
-
             }
         }
     } else if (opcao === 7) {
