@@ -16,7 +16,7 @@
 // A atividade deve ser implementada sem objetos e sem funções, para concentrar a prática nos 
 // arrays, condicionais e repetições.
 
-const { question, questionInt } = require("readline-sync");
+const { question } = require("readline-sync");
 
 const filmes = []
 
@@ -74,15 +74,18 @@ while (opcao !== 5) {
       for (let i = 0; i < filmes.length; i++) {
         console.log(`${i} - ${filmes[i]}`);
       }
-      let indice = questionInt("Escolher indice para remover o filme: ").trim()
-      if (indice === "") {
+      const indiceTexto = question("Escolher indice para remover o filme: ").trim()
+      if (indiceTexto === "") {
         console.log("Campo vazio, tente novamente.");
         question("Pressione ENTER para continuar...")
         continue
       }
-      indice = Number(indice)
-      if (indice < 0 || indice > filmes.length - 1) {
+
+      const indice = Number(indiceTexto)
+      if (!Number.isInteger(indice) || indice < 0 || indice >= filmes.length) {
         console.log("Indice indisponivel, tente novamente.");
+        question("Pressione ENTER para continuar...")
+        continue
       }
       filmes.splice(indice, 1)
       break;

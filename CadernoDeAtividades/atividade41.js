@@ -82,7 +82,6 @@ const consultarSalasDisponiveis = () => {
     for (let i = 0; i < salas.length; i++) {
         if (reservadas[i] === false) {
             contador++
-            k
         }
     }
     console.log(`Salas disponiveis: ${contador}`);
