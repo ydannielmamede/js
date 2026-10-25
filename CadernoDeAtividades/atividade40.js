@@ -35,6 +35,7 @@ const alterarSituacaoFuncionamento = equipamento => {
     
 }
 const exibirMenu = () => {
+    console.clear()
     console.log("1 - Modificar quantidade de estoque.");
     console.log("2 - Alterar situação de funcionamento.");
     console.log("3 - Sair do programa.");
@@ -51,17 +52,21 @@ const main = () =>{
         switch (opcao) {
             case "1":
                 modificarEstoque(equipamento)
+                question("Pressione ENTER para continuar...")
                 break;
         
             case "2":
                 alterarSituacaoFuncionamento(equipamento)
+                question("Pressione ENTER para continuar...")
                 break;
 
             case "3":
                 console.log("Encerrando programa...");
+                question("Pressione ENTER para continuar...")
                 break;
             default:
                 console.log("Opção invalida, tente novamente.");
+                question("Pressione ENTER para continuar...")
                 break;
         }
         

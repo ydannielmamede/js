@@ -25,6 +25,17 @@ const { questionInt, question } = require("readline-sync");
 // objetos, com cada jogo representado por um objeto contendo as propriedades nome, genero 
 // e horas. 
 // Essa etapa permitirá comparar as duas formas de estruturar os mesmos dados.
+    const perguntarTexto = mensagem =>{
+        while (true) {
+            const texto = question(mensagem).trim();
+
+            if (texto !== "") {
+                return texto;
+            }
+
+            console.log("Não deixe o campo vazio.");
+        }
+    }
 
 let nomes = ["Minecraft", "Terraria", "Celeste"];
 let generos = ["Sandbox", "Aventura", "Plataforma"];
@@ -33,6 +44,7 @@ let horas = [45, 20, 12];
 let opcao;
 while (true) {
 
+  console.clear()
   console.log("1. Cadastrar jogo.");
   console.log("2. Listar jogos.");
   console.log("3. Pesquisar jogo por nome.");
@@ -44,11 +56,10 @@ while (true) {
   opcao = questionInt("Inserir opção: ")
 
   if (opcao === 1) {
-    while (true) {
 
-      let nome = question("Inserir nome do jogo: ").trim()
-      let genero = question("Inserir genero: ").trim()
-      let hora = question("Inserir horas de jogo: ").trim()
+      let nome = perguntarTexto("Inserir nome do jogo: ")
+      let genero = perguntarTexto("Inserir genero: ")
+      let hora = questionInt("Inserir horas de jogo: ")
       if (hora === "") {
         console.log("Não deixar o campo vazio!");
         continue
@@ -63,8 +74,8 @@ while (true) {
       generos.push(genero)
       horas.push(hora)
       console.log("Jogo adicionado na lista!");
-      break
-    }
+      question("Pressione ENTER para continuar...")
+
   } else if (opcao === 2) {
     console.log("===================");
     for (let i = 0; i < nomes.length; i++) {
@@ -73,6 +84,7 @@ while (true) {
       console.log(`Horas: ${horas[i]}`);
       console.log("===================");
     }
+    question("Pressione ENTER para continuar...")
   } else if (opcao === 3) {
     while (true) {
 
@@ -87,6 +99,7 @@ while (true) {
           break
         }
       }
+      question("Pressione ENTER para continuar...")
       break
     }
   } else if (opcao === 4) {
@@ -116,6 +129,7 @@ while (true) {
       }
       horas.splice(indice, 1, horasNovas)
       console.log("Horas atualizadas com sucesso!");
+      question("Pressione ENTER para continuar...")
       break
     }
   } else if (opcao === 5) {
@@ -130,6 +144,7 @@ while (true) {
       }
     }
     console.log(`Maior hora jogada ${nomes[indice]}: ${maiorHora}`)
+    question("Pressione ENTER para continuar...")
   } else if (opcao === 6) {
 
     let horasTotal = 0;
@@ -138,7 +153,7 @@ while (true) {
       horasTotal += horas[i]
     }
     console.log(`Total de horas jogadas: ${horasTotal}`)
-
+    question("Pressione ENTER para continuar...")
   } else if (opcao === 7) {
     console.log("Encerrando programa...")
     break

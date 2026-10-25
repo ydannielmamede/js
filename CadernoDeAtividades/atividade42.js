@@ -30,6 +30,7 @@ let emprestados = [false, true, false, false];
 
 let opcao;
 while (true) {
+    console.clear()
     console.log("1. Listar todos os livros.");
     console.log("2. Pesquisar um livro pelo título.");
     console.log("3. Realizar um empréstimo.");
@@ -43,6 +44,7 @@ while (true) {
         for (const livro of livros) {
             console.log(livro);
         }
+        question("Pressione ENTER para continuar...")
     } else if (opcao === 2) {
         let titulo = question("Inserir titulo: ")
 
@@ -51,6 +53,7 @@ while (true) {
                 console.log(`Livro(s) encontrado(s): ${livros[i]}`);
             }
         }
+        question("Pressione ENTER para continuar...")
     } else if (opcao === 3) {
         console.log("Livros disponiveis para emprestimo: ");
         for (let i = 0; i < livros.length; i++) {
@@ -68,6 +71,7 @@ while (true) {
             console.log(`Livro: ${indiceLivro} emprestado com sucesso`);
             break
         }
+        question("Pressione ENTER para continuar...")
     } else if (opcao === 4) {
         console.log("Livros disponiveis para devolução: ");
         for (let i = 0; i < livros.length; i++) {
@@ -85,6 +89,7 @@ while (true) {
             console.log(`Livro: ${indiceLivro} devolvido com sucesso`);
             break
         }
+        question("Pressione ENTER para continuar...")
     } else if (opcao === 5) {
         let contador = 0
         for (let i = 0; i < livros.length; i++) {
@@ -93,12 +98,14 @@ while (true) {
             }
         }
         console.log(`Quantidade de livros disponiveis: ${contador}`);
+        question("Pressione ENTER para continuar...")
     }else if (opcao === 6) {
         console.log("Encerrando programa...");
         break
-        
+
     }else{
         console.log("Opção inválida, tente novamente.");
+        question("Pressione ENTER para continuar...")
         continue
     }
 }

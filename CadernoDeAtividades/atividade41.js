@@ -26,6 +26,7 @@ let reservadas = [false, true, false, false];
 // switch case.
 
 const exibirMenu = () => {
+    console.clear()
     console.log("1. Consultar salas.");
     console.log("2. Reservar uma sala");
     console.log("3. Cancelar uma reserva.");
@@ -41,7 +42,7 @@ const reservarSala = () => {
     console.log(`Salas disponiveis: `);
     for (let i = 0; i < salas.length; i++) {
         if (reservadas[i] === false) {
-            console.log(`${i} ${salas[i]}`);
+            console.log(`${i} - ${salas[i]}`);
         }
     }
     while (true) {
@@ -61,7 +62,7 @@ const cancelarReserva = () => {
     console.log(`Salas reservadas: `);
     for (let i = 0; i < salas.length; i++) {
         if (reservadas[i] === true) {
-            console.log(`${i} ${salas[i]}`);
+            console.log(`${i} - ${salas[i]}`);
         }
     }
     while (true) {
@@ -81,6 +82,7 @@ const consultarSalasDisponiveis = () => {
     for (let i = 0; i < salas.length; i++) {
         if (reservadas[i] === false) {
             contador++
+            k
         }
     }
     console.log(`Salas disponiveis: ${contador}`);
@@ -95,21 +97,26 @@ const main = () => {
         switch (opcao) {
             case 1:
                 consultarSalas()
+                question("Pressione ENTER para continuar...")
                 break;
             case 2:
                 reservarSala()
+                question("Pressione ENTER para continuar...")
                 break;
             case 3:
                 cancelarReserva()
+                question("Pressione ENTER para continuar...")
                 break;
             case 4:
                 consultarSalasDisponiveis()
+                question("Pressione ENTER para continuar...")
                 break;
             case 5:
                 console.log("Encerrando programa...");
                 break;
             default:
                 console.log("Opcão invalida, tente novamente.");
+                question("Pressione ENTER para continuar...")
                 break;
         }
 

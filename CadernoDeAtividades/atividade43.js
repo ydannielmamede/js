@@ -31,6 +31,7 @@ let concluidas = [];
 let opcao;
 while (true) {
 
+    console.clear()
     console.log("1. Cadastrar tarefa.");
     console.log("2. Listar tarefas.");
     console.log("3. Marcar tarefa como concluída.");
@@ -52,6 +53,7 @@ while (true) {
             concluidas.push("pendente")
             break
         }
+        question("Pressione ENTER para continuar...")
     } else if (opcao === 2) {
         if (tarefas.length === 0) {
             console.log("Nenhuma tarefa registrada!");
@@ -61,6 +63,7 @@ while (true) {
                 console.log(tarefas[i]);
             }
         }
+        question("Pressione ENTER para continuar...")
     } else if (opcao === 3) {
         if (tarefas.length === 0) {
             console.log("Nenhuma tarefa registrada!");
@@ -83,6 +86,7 @@ while (true) {
                 break
             }
         }
+        question("Pressione ENTER para continuar...")
     } else if (opcao === 4) {
         if (tarefas.length === 0) {
             console.log("Nenhuma tarefa registrada!");
@@ -94,6 +98,7 @@ while (true) {
                 }
             }
         }
+        question("Pressione ENTER para continuar...")
     } else if (opcao === 5) {
         if (tarefas.length === 0) {
             console.log("Nenhuma tarefa registrada!");
@@ -114,6 +119,7 @@ while (true) {
                 break
             }
         }
+        question("Pressione ENTER para continuar...")
     } else if (opcao === 6) {
         if (tarefas.length === 0) {
             console.log("Nenhuma tarefa registrada!");
@@ -132,11 +138,13 @@ while (true) {
             }
             console.log(`Total de tarefas: ${tarefas.length}\nTarefas Pendentes: ${pendentes}\nTotal concluidas: ${totalConcluidas}`);
         }
+        question("Pressione ENTER para continuar...")
     } else if (opcao === 7) {
         console.log("Encerrando programa");
         break
     }else{
         console.log("Opção inválida,tente novamente");
+        question("Pressione ENTER para continuar...")
         continue
     }
 }

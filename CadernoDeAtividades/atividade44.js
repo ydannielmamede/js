@@ -3,7 +3,7 @@
 // um laboratório.
 // Considere os dados iniciais:
 
-const { questionInt, question } = require("readline-sync");
+const { questionInt, question, questionFloat } = require("readline-sync");
 
 // Desenvolva um programa que:
 // 1. Apresente as temperaturas de todas as salas.
@@ -29,6 +29,7 @@ let temperaturas = [23.5, 29.8, 26.2];
 let opcao
 while (true) {
 
+    console.clear()
     console.log("1. Apresentar as temperaturas de todas as salas.");
     console.log("2. Registrar uma nova temperatura para uma sala.");
     console.log("3. Identificar a sala com a maior temperatura.");
@@ -42,25 +43,41 @@ while (true) {
     if (opcao === 1) {
         console.log("===== Temperaturas =====");
         for (let i = 0; i < temperaturas.length; i++) {
-            console.log(`${i} - ${temperaturas[i]}`);
+            console.log(`${salas[i]} - ${temperaturas[i]}`);
         }
         console.log("========================");
+        question("Pressione ENTER para continuar...")
 
     } else if (opcao === 2) {
+
+        while (true) {
+            
+        
         let nomeSala = question("Nome da sala: ")
-        let temperaturaNova = question("Nova temperatura: ")
+        if (nomeSala === "") {
+            console.log("Campo vazio, tente novamente.")
+            continue
+            
+        }
+        let temperaturaNova = questionFloat("Nova temperatura: ")
 
         temperaturas.push(temperaturaNova)
         salas.push(nomeSala)
-
-
+        console.log("Nova sala e temperatura registrada com sucesso!")
+        question("Pressione ENTER para continuar...")
+            break
+}
     } else if (opcao === 3) {
         let maiorTemp = 0;
+        let indice = 0;
         for (let i = 0; i < temperaturas.length; i++) {
             if (temperaturas[i] > maiorTemp) {
                 maiorTemp = temperaturas[i]
+                indice = i
             }
         }
+        console.log(`A maior temperatura pertence a ${salas[indice]}: ${maiorTemp}`)
+        question("Pressione ENTER para continuar...")
 
     } else if (opcao === 4) {
         let soma = 0;
@@ -68,7 +85,8 @@ while (true) {
             soma += temperaturas[i]
         }
         let media = soma / temperaturas.length
-        console.log(`Média das temperaturas: ${media}`);
+        console.log(`Média das temperaturas: ${media.toFixed(2)}`);
+        question("Pressione ENTER para continuar...")
 
     } else if (opcao === 5) {
         let contadorMaior27 = 0;
@@ -82,21 +100,23 @@ while (true) {
         } else {
             console.log(`Foi encontrado ${contadorMaior27} sala(s) com temperatura maior que 27!`);
         }
+        question("Pressione ENTER para continuar...")
     } else if (opcao === 6) {
-        let tempMaior30 = false
+        let tempMaior30 = 0
         for (let i = 0; i < temperaturas.length; i++) {
             if (temperaturas[i] > 30) {
-                tempMaior30 = true
                 console.log(`Temperatura na sala ${salas[i]} ultrapassou 30Cº`);
-                break
-            } else {
-                console.log("Nenhuma sala ultrapassou 30 de temperatura");
+                tempMaior30++
             }
+        } if (tempMaior30 === 0) {
+            console.log("Nenhuma sala registra temperatura maior que 30.")
         }
+        question("Pressione ENTER para continuar...")
     } else if (opcao === 7) {
         console.log("Encerrando programa...");
         break
     } else {
         console.log("Opção inválida, tente novamente");
+        question("Pressione ENTER para continuar...")
     }
 }
