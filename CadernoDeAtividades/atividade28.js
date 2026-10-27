@@ -1,12 +1,12 @@
 // Atividade 28 — Parâmetros e retorno 
 // Complete as funções a seguir. 
-function calcularAreaRetangulo(largura, altura) {
+  function calcularAreaRetangulo(largura, altura) {
     let area = largura * altura;
     return area;
-}
+  }
 function calcularPerimetroRetangulo(largura, altura) {
-    let perimetro = largura * 2 + altura * 2;
-    return perimetro;
+  let perimetro = largura * 2 + altura * 2;
+  return perimetro;
 }
 let areaCalculada = calcularAreaRetangulo(8, 5);
 let perimetroCalculado = calcularPerimetroRetangulo(8, 5);
