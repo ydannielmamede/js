@@ -80,9 +80,42 @@ while (true) {
             });
         } 
     } else if (opcao === 3) {
-        const inputAutor = question("Inserir nome do autor: ")
+        const inputAutor = question("Inserir nome do autor: ").trim().toLowerCase()
 
+        const livrosAutor = livros.filter(livro => livro.autor.trim().toLowerCase() === inputAutor)
+        
+        if (livrosAutor) {
+            livrosAutor.forEach(livro => {
+                console.log(`${livro.titulo}`);
+            });
+        }else{
+            console.log("Autor nao encontrado, tente novamente");
+        }
+    }else if (opcao === 4) {
+        const livroDisponivel = livros.some(livro => livro.disponivel === false)
+        console.log(`Existe algum livro indisponivel? ${livroDisponivel}`);
+    }else if (opcao === 5) {
+        const todosLivrosDisponivel = livros.every(livro => livro.disponivel === true)
 
+        console.log(`Todos os livros estão disponíveis? ${todosLivrosDisponivel}`);
+    }else if (opcao === 6) {
+        const listaAutoresTitulos = livros.map(livro => {
+            return {
+                titulo: livro.titulo,
+                autor: livro.autor
+            }
+        })
+        console.log(listaAutoresTitulos);
+    }else if (opcao === 7) {
+        const quantidadePaginas = livros.reduce((paginas,livro) => {
+            return paginas + livro.paginas
+        },0)
+        console.log(`Total de paginas somadas: ${quantidadePaginas}`);
+    }else if (opcao === 8) {
+        const ordenarLivrosAno = livros.sort((a,b) => a.ano - b.ano)
+        console.log(ordenarLivrosAno);
+        
+        
     }
     question("Pressione ENTER para continuar...")
 }
