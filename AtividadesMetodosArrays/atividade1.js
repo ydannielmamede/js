@@ -56,9 +56,12 @@ while (true) {
     console.log("7 - Calcular a quantidade total de páginas do catálogo");
     console.log("8 - Ordenar livros pelo ano de publicação");
     console.log("9 - Gerar um relatório completo");
+    console.log("10 - Emprestar titulo");
+    console.log("11 - Encerrar programa");
 
 
-    opcao = questionInt("Selecionar uma opcao: ")
+    opcao = questionInt("\nSelecionar uma opcao: ")
+    console.log();
 
     if (opcao === 1) {
         const inputLivro = question("Inserir título: ").trim().toLowerCase()
@@ -66,39 +69,42 @@ while (true) {
 
         if (localizarLivro) {
             console.log(`Livro encontrado: ${localizarLivro.titulo}`);
-        }else{
+        } else {
             console.log("Livro nao encontrado, tente novamente");
-            
+
         }
     } else if (opcao === 2) {
         const livrosDisponiveis = livros.filter(livro => livro.disponivel === true)
 
-        if (livrosDisponiveis) {
+        if (livrosDisponiveis.length > 0) {
             console.log("===== Livros disponíveis =====");
             livrosDisponiveis.forEach(livro => {
                 console.log(livro.titulo);
             });
-        } 
+        } else {
+            console.log("Não há livros disponiveis");
+        }
     } else if (opcao === 3) {
         const inputAutor = question("Inserir nome do autor: ").trim().toLowerCase()
 
         const livrosAutor = livros.filter(livro => livro.autor.trim().toLowerCase() === inputAutor)
-        
+
         if (livrosAutor) {
             livrosAutor.forEach(livro => {
                 console.log(`${livro.titulo}`);
             });
-        }else{
+        } else {
             console.log("Autor nao encontrado, tente novamente");
         }
-    }else if (opcao === 4) {
+    } else if (opcao === 4) {
         const livroDisponivel = livros.some(livro => livro.disponivel === false)
         console.log(`Existe algum livro indisponivel? ${livroDisponivel}`);
-    }else if (opcao === 5) {
-        const todosLivrosDisponivel = livros.every(livro => livro.disponivel === true)
 
+    } else if (opcao === 5) {
+        const todosLivrosDisponivel = livros.every(livro => livro.disponivel === true)
         console.log(`Todos os livros estão disponíveis? ${todosLivrosDisponivel}`);
-    }else if (opcao === 6) {
+
+    } else if (opcao === 6) {
         const listaAutoresTitulos = livros.map(livro => {
             return {
                 titulo: livro.titulo,
@@ -106,18 +112,53 @@ while (true) {
             }
         })
         console.log(listaAutoresTitulos);
-    }else if (opcao === 7) {
-        const quantidadePaginas = livros.reduce((paginas,livro) => {
+
+    } else if (opcao === 7) {
+        const quantidadePaginas = livros.reduce((paginas, livro) => {
             return paginas + livro.paginas
-        },0)
+        }, 0)
         console.log(`Total de paginas somadas: ${quantidadePaginas}`);
-    }else if (opcao === 8) {
-        const ordenarLivrosAno = livros.sort((a,b) => a.ano - b.ano)
-        console.log(ordenarLivrosAno);
-        
-        
+
+    } else if (opcao === 8) {
+        const ordenarLivrosAno = livros.sort((a, b) => a.ano - b.ano)
+        ordenarLivrosAno.forEach(livro => {
+            console.log(`${livro.titulo} - ${livro.ano}`);
+        });
+
+    } else if (opcao === 9) {
+        console.log("=============================");
+        livros.forEach(livro => {
+            console.log(`Titulo: ${livro.titulo}`);
+            console.log(`Autor: ${livro.autor}`);
+            console.log(`Categoria: ${livro.categoria}`);
+            console.log(`Ano: ${livro.ano}`);
+            console.log(`Disponibilidade: ${livro.disponivel}`);
+            console.log(`Páginas: ${livro.paginas}`);
+            console.log("=============================");
+        })
+
+    } else if (opcao === 10) {
+        const livrosDisponiveis = livros.filter(livro => livro.disponivel === true)
+        if (livrosDisponiveis.length > 0) {
+            console.log("===== Livros disponíveis =====");
+            livrosDisponiveis.forEach((livro, i) => {
+                console.log(`${i} - ${livro.titulo} `);
+            });
+        } else {
+            console.log("Não há livros dispníveis");
+        }
+        const escolherIndice = questionInt("Selecionar o indice para fazer emprestimo: ")
+        livrosDisponiveis[escolherIndice].disponivel = false
+        console.log("Livro emprestado com sucesso.");
+
+        livros.forEach(livro => {
+            console.log(livro.disponivel);
+        });
+    } else if (opcao === 11) {
+        console.log("Encerrando programa...");
+        break
     }
-    question("Pressione ENTER para continuar...")
+    question("\nPressione ENTER para continuar...")
 }
 // Desenvolvimento solicitado:
 // 1. Utilize find() para localizar um livro pelo título informado pelo usuário.
